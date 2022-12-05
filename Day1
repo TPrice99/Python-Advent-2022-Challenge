@@ -1,0 +1,19 @@
+PYTHON
+
+elflist = [[] ,[], [], 
+[], []]
+totalcal=[]
+
+i=0
+while i < 5:
+  x = input("Enter number or nothing to skip")
+  if x == "":
+    totalcal.append(sum(elflist[i]))
+    print(totalcal)
+    i += 1
+  else:
+    elflist[i].append(int(x))
+    
+print(max(totalcal))
+
+
