@@ -1,7 +1,4 @@
-PYTHON
-
-elflist = [[] ,[], [], 
-[], []]
+elflist = [[]]
 totalcal=[]
 
 i=0
@@ -11,9 +8,13 @@ while i < 5:
     totalcal.append(sum(elflist[i]))
     print(totalcal)
     i += 1
+    elflist.append([])
   else:
     elflist[i].append(int(x))
     
 print(max(totalcal))
 
 
+Find total number of elfs
+Break while loop at end
+Read text file
