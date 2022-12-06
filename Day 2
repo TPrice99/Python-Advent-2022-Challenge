@@ -1,1 +1,77 @@
+import pandas as pd
 
+df = pd.DataFrame({
+  'Choice': 'Rock Paper Scissor'.split(),
+  'P1': 'A B C'.split(),
+  'P2': 'X Y Z'.split(),
+  'Score': '1 2 3'.split()
+})
+
+wincon = [['A', 'P'], ['B', 'S'], ['C', 'R']]
+tiecon=[['A','R'],['B','P'],['C','S']]
+losecon=[['A','S'],['B','R'],['C','P']]
+
+totalscore = 0
+#count=0
+#exist = 0
+#exist2=0
+
+selection = ''
+n=0
+
+with open("input.txt") as file:
+  Lines = file.readlines()
+
+  for line in Lines:
+    newline = line.split()
+    playone = newline[0]
+    roundoc = newline[1]
+    
+    #exist2 = tiecon.count(newline)
+    #exist = wincon.count(newline)
+    #if exist2 >0:
+    if roundoc == 'Y':
+      #DRAW
+      totalscore += 3
+      n=1
+
+    #if exist>0:
+    elif roundoc == 'Z':
+      #WIN
+      totalscore += 6
+      n=2
+    else:
+      n=3
+    i=0
+    while i < 3:
+      if n==2:
+        if playone == wincon[i][0]:
+            selection=wincon[i][1]
+      if n==1:
+        if playone == tiecon[i][0]:
+            selection=tiecon[i][1]
+      if n==3:
+        if playone == losecon[i][0]:
+            selection=losecon[i][1]
+
+
+      i+=1
+
+
+    if selection == 'R':
+        totalscore+=1
+    elif selection == 'P':
+        totalscore+=2
+    elif selection == 'S':
+        totalscore+=3
+    #selectionP2 = (df.query("P2 == @playtwo"))
+
+    #scorP2 = selectionP2.Score
+
+    #totalscore += int(scorP2)
+
+print(totalscore)
+
+#ANSWER PT 1: 11841
+
+#ANSWER PT 2: 13022
