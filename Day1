@@ -1,20 +1,37 @@
+import pandas
+count = 0
 elflist = [[]]
 totalcal=[]
+topthree = []
+i = 0
 
-i=0
-while i < 5:
-  x = input("Enter number or nothing to skip")
-  if x == "":
-    totalcal.append(sum(elflist[i]))
-    print(totalcal)
-    i += 1
-    elflist.append([])
-  else:
-    elflist[i].append(int(x))
+with open ("data.txt") as file:
+    Lines = file.readlines() 
     
-print(max(totalcal))
+    for line in Lines: 
+        count += 1
+        
+        if line == "\n":
+            totalcal.append(sum(elflist[i]))
+            i+=1
+            elflist.append([])
+        else:
+            elflist[i].append(int(line))
 
 
-Find total number of elfs
-Break while loop at end
-Read text file
+p = 0
+while p < 3:
+    topthree.append(max(totalcal))
+    index = totalcal.index(max(totalcal))
+    totalcal.pop(index)
+    p+=1
+
+
+ 
+
+print(sum(topthree))
+#ANSWER PT 2 199628
+
+#print(max(totalcal))
+
+#ANSWER PART1:67633
