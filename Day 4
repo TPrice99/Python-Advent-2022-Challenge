@@ -1,0 +1,65 @@
+import pandas
+import re
+
+count=0
+u=0
+with open ("input (3).txt") as file:
+  Lines = file.readlines()
+  for line in Lines:
+    u+=1
+    pair=[[],[]]
+    p1=[]
+    p2=[]
+
+    x=re.findall('\d+',line)
+    print(x)
+    o=0
+    i=0
+    while o < len(x):
+      pair[i].append(int(x[o]))
+      if o >= 1:
+        i=1
+      o+=1
+    print(pair) 
+
+    if len(pair[0])>1:
+      range1 = range(pair[0][0] , (pair[0][1])+1)
+      for n in range1:
+        p1.append(n)
+    if len(pair[1])>1:
+      range2=range(pair[1][0] , (pair[1][1])+1)
+      for x in range2:
+        p2.append(x)
+    if len(p1) == 1: p1.append(p1[0])
+    if len(p2) == 1: p2.append(p2[0])
+    print(p1,p2)
+    if len(p1) == 1 and p1 in p2:
+      count+=1
+    elif len(p2)==1 and p2 in p1:
+      count+=1
+
+
+    i=0 
+    while i < len(p1):
+      if p1[i] in p2:
+        count+=1
+        i=200
+      else: i+=1
+
+print(count)
+
+
+    #PT 1  
+    #if len(p1) >1 and len(p2)>1:
+      #if p1[0] in p2 and p1[-1] in p2:
+        #count+=1
+      #elif p2[0] in p1 and p2[-1] in p1:
+        #count+=1
+    #print(u,count)
+
+#print(count)
+
+
+#ANSWER PT 1 571
+#ANSWER PT 2 917
+
