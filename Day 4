@@ -1,0 +1,94 @@
+import pandas
+import re
+workarea=[]
+grid=[]
+work=True
+numbers=False
+moveorder=False
+
+print("__________4______")
+with open ("input (4).txt") as file:
+  Lines = file.readlines()
+  for line in Lines:
+    list=[*line]
+    numbers=False
+    if len(list)==1:
+      list.append('y')
+
+
+    if list[0] =='m':
+      work=False
+      number=False
+      moveorder=True
+      dig=re.findall('\d+',line)
+    elif list[1] == '1':
+      digits=re.findall('\d+',line)
+      work=False
+      numbers=True
+
+
+    if '\n' in list: list.remove('\n')
+    i=0
+    if work==True:
+      while i<len(list):
+        if (len(list)-2)>i:
+          if list[i] == ']' and list[(i+2)] == '[':
+            list.pop(i)
+            list.pop(i)
+            list.pop(i)
+
+        if list[i] =='[' or list[i] ==']' or list[i]==' ':
+          list.pop(i)
+
+        if (len(list)-2)>i:
+          if list[i]==' ' and list[i+1]==' ' and list[i+2] == ' ':
+            list.pop(i)
+            list.pop(i)
+            list[i]='x'
+          if list[i]==' ':
+            list.pop(i)
+            i-=1
+        i+=1
+      workarea.append(list)
+      #print(workarea)
+
+    if numbers==True:
+      #print(workarea)
+      n=0
+      while n < len(digits):
+        grid.append([])
+        n+=1
+
+      i=0
+      n=0
+      while n < len(digits):
+        if workarea[i][n] != 'x':
+          grid[n].append(workarea[i][n])
+        i+=1
+        if i > len(workarea)-1:
+          n+=1
+          i=0
+          #print(grid)
+
+    
+    if moveorder==True:
+      #print(grid)
+      n=int(dig[0])
+      to=(int(dig[2]))-1
+      fromm=(int(dig[1]))-1
+      #print(n,to,fromm)
+
+      while n > 0:
+        grid[to].insert(0,grid[fromm][(n-1)])
+        grid[fromm].pop(n-1)
+        #print(grid)
+        n-=1
+
+
+i=0
+while i < len(digits):
+  print(grid[i][0])
+  i+=1
+
+#ANSWER PT 1  TBVFVDZPN
+#ANSWER PT 2 VLCWHTDSZ
