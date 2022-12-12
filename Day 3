@@ -1,0 +1,39 @@
+import pandas
+
+dict ={'a':1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10,'k':11,'l':12,'m':13,'n':14,'o':15,'p':16,'q':17,'r':18,'s':19,'t':20,'u':21,'v':22,'w':23,'x':24,'y':25,'z':26}
+
+list=[]
+totalpoints=0
+
+with open ("input (2).txt") as file:
+  Lines = file.readlines()
+  for line in Lines:
+    item = [*line]
+    #print(item)
+    if '\n' in item:
+      item.remove('\n')
+    list.append(item)
+
+#print(len(list)/3-1)
+i=0
+n=0
+while n < (len(list)):
+  #print(n)
+  if list [n][i] in list[(n+1)] and list [n][i] in list[(n+2)]:
+    item=(list[n][i])
+    case = item.isupper()
+      #print(item)
+    if case == True:
+     totalpoints+=26
+     item = item.lower()
+  #print(dict[item])
+    totalpoints+=dict[item]   
+    n+=3
+    i=0
+  else: i+=1
+
+print(totalpoints)
+
+
+#ANSWER PT 1 8139
+#ANSWER PT2 2668
